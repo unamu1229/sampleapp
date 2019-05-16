@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/review', 'Review\\RegisterAction');
 Route::get('/search', 'Review\\SearchAction');
+Route::get('/payload', 'ArticlePayloadAction');
