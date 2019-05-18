@@ -4,20 +4,21 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class DomainClosure implements Rule
+class ThrowClosure implements Rule
 {
 
     private $factoryClosure;
-    private $message;
+    private $errorMessage;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct(callable $factoryClosure)
+    public function __construct(callable $factoryClosure, string $errorMessage = null)
     {
         $this->factoryClosure = $factoryClosure;
+        $this->errorMessage = $errorMessage;
     }
 
     /**
@@ -30,22 +31,14 @@ class DomainClosure implements Rule
     public function passes($attribute, $value)
     {
         try {
-            ($this->factoryClosure)();
+            ($this->factoryClosure)($value);
         } catch (\DomainException $e) {
-            if (!$this->message) {
-                $this->message = $e->getMessage();
+            if (!$this->errorMessage) {
+                $this->errorMessage = $attribute . $e->getMessage();
             }
             return false;
         }
         return true;
-    }
-
-
-    public function setMessage($message)
-    {
-        $this->message = $message;
-
-        return $this;
     }
 
     /**
@@ -55,6 +48,6 @@ class DomainClosure implements Rule
      */
     public function message()
     {
-        return $this->message;
+        return $this->errorMessage;
     }
 }

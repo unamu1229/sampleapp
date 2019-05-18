@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\Domain;
-use App\Rules\DomainClosure;
+use App\Rules\ThrowClosure;
 use App\Rules\DomainFactory;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Rule;
@@ -73,9 +73,14 @@ class IndexRequest extends FormRequest
                         return 'リフレクションを使わない場合';
                     }
                 },
-                (new DomainClosure(function () {
-                    new BarthDay($this->get('year'), $this->get('month'), $this->get('day'));
-                }))->setMessage('この方法でメッセージも自由に設定できるやないかい'),
+                new ThrowClosure(function ($value) {
+                    new BarthDay($this->get('year'), $this->get('month'), $value);
+                }, '引数のほうがすっきりするやないかい'),
+
+                // エラーメッセージ設定デフォルト
+                new ThrowClosure(function ($value) {
+                    new BarthDay($this->get('year'), $this->get('month'), $value);
+                }),
 // laravelのヘルパー関数とかでもcallableのタイプヒンティング通っちゃう
 //           new DomainClosure('public_path')
 
