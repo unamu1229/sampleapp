@@ -15,7 +15,7 @@ class Domain implements Rule
      *
      * @return void
      */
-    public function __construct(callable $factoryClosure, string $errorMessage = null)
+    public function __construct(\Closure $factoryClosure, string $errorMessage = null)
     {
         $this->factoryClosure = $factoryClosure;
         $this->errorMessage = $errorMessage;

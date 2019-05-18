@@ -81,8 +81,6 @@ class IndexRequest extends FormRequest
                 new Domain(function ($value) {
                     new BarthDay($this->get('year'), $this->get('month'), $value);
                 }),
-// laravelのヘルパー関数とかでもcallableのタイプヒンティング通っちゃう
-//           new DomainClosure('public_path')
 
             ],
         ];
