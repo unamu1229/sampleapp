@@ -14,7 +14,7 @@ class BarthDay
             throw new \DomainException('これはあかん');
         }
 
-        $this->value = new \DateTime("$year-$day-$month");
+        $this->value = new \DateTime("$year-$month-$day");
     }
 
     public function value()
