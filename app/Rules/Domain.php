@@ -7,19 +7,18 @@ use Illuminate\Contracts\Validation\Rule;
 class Domain implements Rule
 {
 
-    private $className;
-    private $values;
-    private $message;
+    private $factoryClosure;
+    private $errorMessage;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($className, $values)
+    public function __construct(callable $factoryClosure, string $errorMessage = null)
     {
-        $this->className = $className;
-        $this->values = $values;
+        $this->factoryClosure = $factoryClosure;
+        $this->errorMessage = $errorMessage;
     }
 
     /**
@@ -32,10 +31,11 @@ class Domain implements Rule
     public function passes($attribute, $value)
     {
         try {
-            $class = new \ReflectionClass($this->className);
-            $class->newInstanceArgs($this->values);
+            ($this->factoryClosure)($value);
         } catch (\DomainException $e) {
-            $this->message = $e->getMessage();
+            if (!$this->errorMessage) {
+                $this->errorMessage = $attribute . $e->getMessage();
+            }
             return false;
         }
         return true;
@@ -48,6 +48,6 @@ class Domain implements Rule
      */
     public function message()
     {
-        return $this->message;
+        return $this->errorMessage;
     }
 }

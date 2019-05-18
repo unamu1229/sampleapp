@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DomainRef;
 use App\Rules\Domain;
-use App\Rules\ThrowClosure;
 use App\Rules\DomainFactory;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Rule;
@@ -48,13 +48,13 @@ class IndexRequest extends FormRequest
             ],
             "month" => [
                 'digits:2',
-                new class (BarthDay::class, [$this->get('year'), $this->get('month'), $this->get('day')]) extends Domain {
+                new class (BarthDay::class, [$this->get('year'), $this->get('month'), $this->get('day')]) extends DomainRef {
                     public function message()
                     {
                         return 'そんな誕生日無いですよ';
                     }
                 },
-                new Domain(BarthDay::class, [$this->get('year'), $this->get('month'), $this->get('day')]),
+                new DomainRef(BarthDay::class, [$this->get('year'), $this->get('month'), $this->get('day')]),
             ],
             "day" => [
                 'digits:2',
@@ -73,12 +73,12 @@ class IndexRequest extends FormRequest
                         return 'リフレクションを使わない場合';
                     }
                 },
-                new ThrowClosure(function ($value) {
+                new Domain(function ($value) {
                     new BarthDay($this->get('year'), $this->get('month'), $value);
                 }, '引数のほうがすっきりするやないかい'),
 
                 // エラーメッセージ設定デフォルト
-                new ThrowClosure(function ($value) {
+                new Domain(function ($value) {
                     new BarthDay($this->get('year'), $this->get('month'), $value);
                 }),
 // laravelのヘルパー関数とかでもcallableのタイプヒンティング通っちゃう

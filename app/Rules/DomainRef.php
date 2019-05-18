@@ -4,21 +4,22 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ThrowClosure implements Rule
+class DomainRef implements Rule
 {
 
-    private $factoryClosure;
-    private $errorMessage;
+    private $className;
+    private $values;
+    private $message;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct(callable $factoryClosure, string $errorMessage = null)
+    public function __construct($className, $values)
     {
-        $this->factoryClosure = $factoryClosure;
-        $this->errorMessage = $errorMessage;
+        $this->className = $className;
+        $this->values = $values;
     }
 
     /**
@@ -31,11 +32,10 @@ class ThrowClosure implements Rule
     public function passes($attribute, $value)
     {
         try {
-            ($this->factoryClosure)($value);
+            $class = new \ReflectionClass($this->className);
+            $class->newInstanceArgs($this->values);
         } catch (\DomainException $e) {
-            if (!$this->errorMessage) {
-                $this->errorMessage = $attribute . $e->getMessage();
-            }
+            $this->message = $e->getMessage();
             return false;
         }
         return true;
@@ -48,6 +48,6 @@ class ThrowClosure implements Rule
      */
     public function message()
     {
-        return $this->errorMessage;
+        return $this->message;
     }
 }
