@@ -32,10 +32,20 @@ class DomainClosure implements Rule
         try {
             ($this->factoryClosure)();
         } catch (\DomainException $e) {
-            $this->message = $e->getMessage();
+            if (!$this->message) {
+                $this->message = $e->getMessage();
+            }
             return false;
         }
         return true;
+    }
+
+
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
     }
 
     /**

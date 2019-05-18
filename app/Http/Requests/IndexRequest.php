@@ -73,9 +73,9 @@ class IndexRequest extends FormRequest
                         return 'リフレクションを使わない場合';
                     }
                 },
-                new DomainClosure(function () {
+                (new DomainClosure(function () {
                     new BarthDay($this->get('year'), $this->get('month'), $this->get('day'));
-                }),
+                }))->setMessage('この方法でメッセージも自由に設定できるやないかい'),
 // laravelのヘルパー関数とかでもcallableのタイプヒンティング通っちゃう
 //           new DomainClosure('public_path')
 
@@ -103,9 +103,8 @@ class IndexRequest extends FormRequest
     public function messages()
     {
         return [
-            'month' => [
-                'hhhh'
-            ]
+            'day.digits' => 'dayの範囲ちゃう',
+            'day.2' => 'ちがうやないかい'
         ];
     }
 }
