@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5492c22d4b7f6ff73fa017d3f0e60478",
+    "content-hash": "692c69bc35c94ed37b3cf8ff0ba9f63f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2756,6 +2756,46 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "unamu1229/domain_rule",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unamu1229/domain_rule.git",
+                "reference": "a9d25a62cb8967c07ac3bf04c167600e26f6db90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unamu1229/domain_rule/zipball/a9d25a62cb8967c07ac3bf04c167600e26f6db90",
+                "reference": "a9d25a62cb8967c07ac3bf04c167600e26f6db90",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/laravel": ">=5.5",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DomainRule\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "米田宏",
+                    "email": "yonedahiroshi1229@gmail.com"
+                }
+            ],
+            "description": "laravel  DomainException catch",
+            "time": "2019-05-19T02:33:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

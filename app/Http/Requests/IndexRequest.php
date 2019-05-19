@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\DomainRef;
 use App\Rules\Domain;
 use App\Rules\DomainFactory;
+use DomainRule\DomainRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Rule;
 use Package\Value\BarthDay;
@@ -73,9 +74,9 @@ class IndexRequest extends FormRequest
                         return 'リフレクションを使わない場合';
                     }
                 },
-                new Domain(function ($value) {
+                new DomainRule(function ($value) {
                     new BarthDay($this->get('year'), $this->get('month'), $value);
-                }, '引数のほうがすっきりするやないかい'),
+                }, 'composerにパッケージとして登録してみた'),
 
                 // エラーメッセージ設定デフォルト
                 new Domain(function ($value) {
