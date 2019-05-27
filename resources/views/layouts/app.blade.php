@@ -33,6 +33,13 @@
                     </a>
                 </div>
 
+                {{ debug(
+                Auth::guard('admin')->user() ? Auth::guard('admin')->user()->name : null
+                ) }}
+                {{ debug(
+                Auth::guard('web')->user() ? Auth::guard('web')->user()->name : null
+                ) }}
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
