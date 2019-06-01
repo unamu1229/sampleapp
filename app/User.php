@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function licenses()
+    {
+        return $this->belongsToMany(License::class, 'user_license');
+    }
 }
