@@ -19,6 +19,13 @@ class UserRepositoryTest extends TestCase
         $this->userRepo = $this->app->make(UserRepository::class);
     }
 
+    public function testGenerateById()
+    {
+        $user = $this->userRepo->generateById(1);
+        var_dump($user);
+        $this->assertTrue(true);
+    }
+
     /**
      * A basic unit test example.
      *
