@@ -39,6 +39,11 @@ class UserRepository
         return $this->user->where('email', $email)->first() ? true : false;
     }
 
+    public function sameEmailExceptSelf(string $email, int $id)
+    {
+        return $this->user->where('email', $email)->where('id', '!=', $id)->first() ? true : false;
+    }
+
 
     /**
      *
@@ -70,5 +75,14 @@ class UserRepository
     public function select($id)
     {
         return $this->user->find($id);
+    }
+
+
+    public function save(CustomerEntity $customerEntity)
+    {
+        $customer = $this->user->find($customerEntity->getId());
+        $customer->name = $customerEntity->getName();
+        $customer->email = $customerEntity->getEmail();
+        $customer->save();
     }
 }
