@@ -17,7 +17,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('test2', 'TestController@index');
+Route::get('test', 'TestController@index');
+
+Route::get('profile', 'ProfileController@index');
 
 Auth::routes();
 
