@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('test', 'TestController@index');
 
 Route::get('profile', 'ProfileController@index');
+Route::post('profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Auth::routes();
 

@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    <form action="{{route('profile.edit')}}" method="post">
+        @csrf
+        @for($i=0; $i<10; $i++)
+            <input type="text" name="license[]" value="{{$user->licenses->has($i) ? $user->licenses[$i]->name : null}}">
+        @endfor
+
+        <button type="submit">送信</button>
+    </form>
     <div>
     @php
     $value = [0, 1, 2];
