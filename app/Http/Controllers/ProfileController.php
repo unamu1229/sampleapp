@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
+    public function index(){
+        
         $test = "save = 'aaa'; var_dump("lllll");  \$test2->lll";
         $test2 = new \stdClass();
         $test2->$test = 'ss';
