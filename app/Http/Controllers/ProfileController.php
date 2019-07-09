@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function index(){
+
+
         
         $test = "save = 'aaa'; var_dump("lllll");  \$test2->lll";
         $test2 = new \stdClass();
@@ -30,8 +32,7 @@ class ProfileController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-    public function edit(ProfileRequest $request)
-    {
+    public function edit(ProfileRequest $request) {
 
     }
 }
