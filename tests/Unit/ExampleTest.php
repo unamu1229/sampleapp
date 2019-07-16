@@ -21,5 +21,7 @@ class ExampleTest extends TestCase
         $recursion = new Recursion(1);
 
         $this->assertEquals(11, $recursion->getRecursionCount());
+
+        $this->assertEquals(11, $recursion->count());
     }
 }
