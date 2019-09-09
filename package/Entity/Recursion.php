@@ -51,23 +51,25 @@ class Recursion
      */
     private function validCount()
     {
+        $this->count++;
+
         if ($this->count > 10) {
             return true;
         }
 
-        $this->count++;
-
         return false;
     }
-
 
     public function count()
     {
         static $counter = 0;
-        $counter++;
+
         if ($counter > 10) {
             return $counter;
         }
+
+        $counter++;
+
         return $this->count();
     }
 }

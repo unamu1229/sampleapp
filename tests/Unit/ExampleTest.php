@@ -18,10 +18,18 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $recursion = new Recursion(1);
+        echo 'yes sync';
+        $time_start = microtime(true);
 
-        $this->assertEquals(11, $recursion->getRecursionCount());
+        for ($i=0; $i < 10; $i++) {
+            $recursion = new Recursion(1);
 
-        $this->assertEquals(11, $recursion->count());
+            $this->assertEquals(11, $recursion->getRecursionCount());
+
+            $this->assertEquals(11, $recursion->count());
+        }
+
+        $time = microtime(true) - $time_start;
+        echo "{$time} 秒";
     }
 }
