@@ -65,8 +65,6 @@
         </style>
     </head>
     <body>
-    <div>{{ var_dump(session()->all()) }}</div>
-        <div>{{var_dump($errors)}}</div>
         <div>
         @if ($errors->any())
             <ul>

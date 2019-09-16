@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.2.0",
+        "aws/aws-sdk-php": "^3.112",
         "elasticsearch/elasticsearch": "^6.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^5.8",

@@ -13,6 +13,8 @@
 
 
 Route::get('/', function () {
+    //\Illuminate\Support\Facades\Event::forget(\App\Events\PublishProcessor::class);
+    \Illuminate\Support\Facades\Event::dispatch(new \App\Events\PublishProcessor(1031));
     return view('welcome');
 });
 
