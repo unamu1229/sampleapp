@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         PublishProcessor::class => [
             MessageSubscriber::class,
             MessageQueueSubscriber::class
+        ],
+        'App\Events\PreUserChange' => [
+            'App\Listeners\UserChangeLog',
         ]
     ];
 
