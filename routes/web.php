@@ -37,3 +37,5 @@ Route::post('register/admin', 'Auth\AdminRegisterController@register')->name('re
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home/admin', 'HomeController@admin')->name('home.admin');
+
+Route::get('/user/search', 'UserController@search')->name('user.search');
