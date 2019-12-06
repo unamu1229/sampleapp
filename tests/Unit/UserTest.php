@@ -24,7 +24,8 @@ class UserTest extends TestCase
         $user->licenses()->wherePivot('type', '=', 'active')->sync(
             [
                 1 => ['type' => 'active'],
-                2 => ['type' => 'active']
+                2 => ['type' => 'active'],
+                3 => ['type' => 'active'],
             ]
         );
 
@@ -32,7 +33,7 @@ class UserTest extends TestCase
             [
                 1 => ['type' => 'wish'],
                 2 => ['type' => 'wish'],
-                3 => ['type' => 'wish']
+                //3 => ['type' => 'wish']
             ]
         );
     }
