@@ -29,6 +29,13 @@ class User extends Authenticatable
 
     public function licenses()
     {
-        return $this->belongsToMany(License::class, 'user_license');
+        return $this->belongsToMany(License::class, 'user_license')
+            ->withTimestamps();
+    }
+
+    public function licensesFromActive()
+    {
+        return $this->belongsToMany(License::class, 'user_license')
+            ->wherePivot('type', '=', 'active');
     }
 }
