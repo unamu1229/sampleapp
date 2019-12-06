@@ -38,4 +38,10 @@ class User extends Authenticatable
         return $this->belongsToMany(License::class, 'user_license')
             ->wherePivot('type', '=', 'active');
     }
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class)->withDefault();
+        //return $this->belongsTo(Tag::class);
+    }
 }

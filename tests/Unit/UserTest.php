@@ -36,4 +36,13 @@ class UserTest extends TestCase
             ]
         );
     }
+
+    public function test_default()
+    {
+        $user = User::query()->where('id', 1)->first();
+        // リレーションの定義でwithDefault()をつけとくと
+        // $user->tag ? $user->tag->tag_name : null
+        // のような呼び出し元でnullチェックとかしなくていい
+        $this->assertEquals(null, $user->tag->tag_name);
+    }
 }
