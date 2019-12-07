@@ -54,7 +54,7 @@ class UserTest extends TestCase
     {
         $user = User::query()->where('id', 1)->first();
         foreach ($user->licenses as $license) {
-            $this->assertTrue(in_array($license->pivot->type, ['active', 'wish', 'pending']));
+            $this->assertTrue(in_array($license->pivot->type, ['[active]', '[wish]', '[pending]']));
         }
     }
 }

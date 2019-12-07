@@ -30,6 +30,7 @@ class User extends Authenticatable
     public function licenses()
     {
         return $this->belongsToMany(License::class, 'user_license')
+            ->using(UserLicense::class)
             ->withPivot(['type'])
             ->withTimestamps();
     }
