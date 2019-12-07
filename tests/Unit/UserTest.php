@@ -15,7 +15,7 @@ class UserTest extends TestCase
         $user = User::query()->where('id', 1)->first();
 
         //$user->licenses()->detach();
-        //$user->licensesFromActive()->sync([1 => ['type' => 'active'], 2 => ['type' => 'active'], 3 => ['type' => 'active']]);
+        $user->licensesFromActive()->sync([1 => ['type' => 'active'], 2 => ['type' => 'active'], 3 => ['type' => 'active']]);
 
         //$user->licenses()->sync([1 => ['type' => 'pending']]);
 
@@ -45,5 +45,16 @@ class UserTest extends TestCase
         // $user->tag ? $user->tag->tag_name : null
         // のような呼び出し元でnullチェックとかしなくていい
         $this->assertEquals(null, $user->tag->tag_name);
+    }
+
+    // リレーションの定義、中間テーブルでpivotをextendして、リレーションの定義に
+    // using と withPivot を付けることでリレーション先のモデルに中間テーブルの内容
+    // を付け足しができる
+    public function test_custom_model()
+    {
+        $user = User::query()->where('id', 1)->first();
+        foreach ($user->licenses as $license) {
+            $this->assertTrue(in_array($license->pivot->type, ['active', 'wish', 'pending']));
+        }
     }
 }
