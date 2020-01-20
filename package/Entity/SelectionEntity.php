@@ -3,6 +3,7 @@
 
 namespace Package\Entity;
 
+use App\SelectionHistory;
 use Package\Service\AddSelectionHistory;
 use Package\Value\Selection\ActionType;
 use Package\Value\Selection\SelectionId;
@@ -16,6 +17,11 @@ class SelectionEntity
      */
     private $id;
 
+    /**
+     * @var SelectionHistory[]
+     */
+    private $histories;
+
     public function __construct(SelectionId $id)
     {
         $this->id = $id;
@@ -27,6 +33,14 @@ class SelectionEntity
     public function getId(): SelectionId
     {
         return $this->id;
+    }
+
+    /**
+     * @param SelectionHistory $history
+     */
+    public function pushHistory(SelectionHistory $history)
+    {
+        $this->histories[] = $history;
     }
 
     public function agreeScheduleByCustomer(AddSelectionHistory $addSelectionHistory): SelectionHistoryEntity

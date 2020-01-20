@@ -15,20 +15,23 @@ class PlayGroundTest extends TestCase
     use DatabaseTransactions;
 
     /**
-     * A basic unit test example.
-     *
-     * @return void
+     * @throws \Throwable
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        echo "--------------\n";
+        print_r(strip_tags(view('test')->render()));
+        echo "--------------\n";
 
-        /** @var User $user */
-        $user = User::find(1);
-        $user->name = 'test';
-        $user->email = 'test@email';
-        $preUser = clone $user;
-        $user->save();
-        event(new PreUserChange($preUser));
+
+//        $this->assertTrue(true);
+//
+//        /** @var User $user */
+//        $user = User::find(1);
+//        $user->name = 'test';
+//        $user->email = 'test@email';
+//        $preUser = clone $user;
+//        $user->save();
+//        event(new PreUserChange($preUser));
     }
 }
