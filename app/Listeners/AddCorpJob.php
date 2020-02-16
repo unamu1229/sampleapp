@@ -2,10 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\Package\Event\Job\CreatedJob;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Package\Repository\CorpRepository;
+use Package\Repository\Query\CorpRepository;
 
 class AddCorpJob
 {
@@ -27,13 +26,10 @@ class AddCorpJob
      * @param  CreatedJob  $event
      * @return void
      */
-    public function handle(CreatedJob $event)
+    public function handle(\Package\Event\Job\CreatedJob $event)
     {
+        print_r('listen');
         $corpEntity = $this->corpRepository->fetch($event->jobEntity->getCorpId());
-        /**
-         * 結局、複数求人を扱うことでトランザクションの問題があるから更新時にアクティブが残すのは無理
-         * トランザクションをとらないようにcorpの外にis_activeを持っていくと、同時に求人を編集した際などにデータ不整合が起きる可能性がある。
-         */
         $this->corpRepository->save($corpEntity);
     }
 }

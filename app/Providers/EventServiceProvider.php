@@ -29,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
             MessageQueueSubscriber::class
         ],
         'App\Events\PreUserChange' => [
-            'App\Listeners\UserChangeLog',
+            'App\Listeners\UserChangeLog'
         ],
         'Package\Event\Job\CreatedJob' => [
             'App\Listeners\AddCorpJob'

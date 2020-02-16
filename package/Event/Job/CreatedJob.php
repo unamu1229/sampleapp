@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Package\Event\Job;
+namespace Package\Event\Job;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;

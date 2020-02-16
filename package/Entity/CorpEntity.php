@@ -3,7 +3,7 @@
 
 namespace Package\Entity;
 
-use App\Events\Package\Event\Job\CreatedJob;
+use Package\Event\Job\CreatedJob;
 use App\Job;
 use Package\Service\IsExistActiveJob;
 use Package\Value\Job\Status;
@@ -33,17 +33,6 @@ class CorpEntity
     public function getId(): string
     {
         return $this->id;
-    }
-
-    /**
-     *
-     * 求人を掲載しているか否かを表示のパフォーマンスのために更新時の判断しておく（アンチパターン）
-     * @param IsExistActiveJob $activeJob
-     * @return bool
-     */
-    public function isActive(IsExistActiveJob $activeJob): bool
-    {
-        return $activeJob->byCorp($this->id);
     }
 
     /**

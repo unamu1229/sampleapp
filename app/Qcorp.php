@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Corp extends Model
+class Qcorp extends Model
 {
     public $incrementing = false;
 }

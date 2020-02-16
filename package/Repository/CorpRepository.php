@@ -4,7 +4,9 @@
 namespace Package\Repository;
 
 use App\Corp;
+use App\Qcorp;
 use Package\Entity\CorpEntity;
+use Package\Entity\Query\CorpEntity as QCorpEntity;
 use Package\Service\IsExistActiveJob;
 
 class CorpRepository
@@ -20,17 +22,6 @@ class CorpRepository
     {
         $corp = new Corp();
         $corp->id = $corpEntity->getId();
-        $corp->is_active = $corpEntity->isActive($this->isExistActiveJob);
         $corp->save();
-    }
-
-    /**
-     * @param string $corpId
-     * @return CorpEntity
-     */
-    public function fetch(string $corpId): CorpEntity
-    {
-        $corp = Corp::query()->where('id', $corpId)->first();
-        return new CorpEntity($corp->id);
     }
 }
