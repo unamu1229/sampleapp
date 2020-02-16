@@ -30,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\PreUserChange' => [
             'App\Listeners\UserChangeLog',
+        ],
+        'Package\Event\Job\CreatedJob' => [
+            'App\Listeners\AddCorpJob'
         ]
     ];
 

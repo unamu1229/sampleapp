@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Events\PreUserChange;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
@@ -21,6 +22,11 @@ class PlayGroundTest extends TestCase
     {
         echo "--------------\n";
         print_r(strip_tags(view('test')->render()));
+        Carbon::createFromFormat('Y-m-d', '2020-1-1')->toDateString();
+        $test = 7;
+        collect()->first(function ($val) use ($test) {
+            return $val->id == $test;
+        });
         echo "--------------\n";
 
 
