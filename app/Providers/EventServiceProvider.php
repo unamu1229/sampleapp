@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Package\Event\Job\CreatedJob' => [
             'App\Listeners\AddCorpJob'
+        ],
+        'Package\Domain\User\ChangeGender' => [
+            'App\Listeners\ChangeEntryBilling'
         ]
     ];
 
