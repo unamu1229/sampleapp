@@ -6,8 +6,12 @@ use Package\Domain\User\ChangeGender;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ChangeEntryBilling
+class ChangeEntryBilling implements ShouldQueue
 {
+    public $connection = 'database';
+
+    public $queue = 'change-entry-billing';
+
     /**
      * Create the event listener.
      *
