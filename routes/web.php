@@ -41,11 +41,15 @@ Route::get('/home/admin', 'HomeController@admin')->name('home.admin');
 Route::get('/user/search', 'UserController@search')->name('user.search');
 
 Route::get('/order', function () {
-    $user = \App\User::query()->find(525);
-    \Illuminate\Support\Facades\Auth::guard()->login($user);
     $order = \App\Order::query()->find(23);
     event(new \App\Events\ShippingStatusUpdated($order));
     return view('broadcast.test', ['orderId' => $order->id]);
+});
+
+Route::get('/login_by/{user_id}', function ($user_id) {
+    $user = \App\User::query()->find($user_id);
+    \Illuminate\Support\Facades\Auth::guard()->login($user);
+    return 'logined';
 });
 
 Route::get('/public-event', function () {

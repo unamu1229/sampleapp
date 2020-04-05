@@ -1,3 +1,28 @@
+## sample broadcastの動かし方。
+redisのコンテナを動かす。
+```
+docker-compose up --build -d redis
+```
+キューを動かす。
+```
+docker-compose exec workspace php artisan queue:work
+```
+laravel-echo-serverを動かす。
+```
+laravel-echo-server start --config="y"
+```
+### privete チャンネルの確認方法
+#### subscribe側
+/login_by/525  
+にアクセスログインしてID：525のユーザーでのログイン状態にする。  
+/  
+にアクセスしてjsのコンソールを表示しておく。jsコンソールに購読したメッセージが届く。
+#### publish側
+別タブで  
+/order  
+にアクセスするとプライベートイベントがpublishされる
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

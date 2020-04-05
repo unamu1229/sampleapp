@@ -7,7 +7,6 @@
     </script>
     <body>
     <h1>broadcast test2</h1>
-    {{\Illuminate\Support\Facades\Auth::user()->name}}
     <script src="{{asset('/js/app.js')}}"></script>
     </body>
 </html>
