@@ -43,13 +43,20 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+window.io = require('socket.io-client');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key',
-//     cluster: 'mt1',
-//     encrypted: true
-// });
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: 'http://localhost:6001'
+});
+
+window.Echo.channel('public-event')
+    .listen('PublicEvent', (e) => {
+    console.log(e);
+});
+
+window.Echo.private('order.' + orderId).listen('ShippingStatusUpdated', (e) => {
+    console.log(e);
+});

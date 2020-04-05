@@ -39,3 +39,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/admin', 'HomeController@admin')->name('home.admin');
 
 Route::get('/user/search', 'UserController@search')->name('user.search');
+
+Route::get('/order', function () {
+    $user = \App\User::query()->find(525);
+    \Illuminate\Support\Facades\Auth::guard()->login($user);
+    $order = \App\Order::query()->find(23);
+    event(new \App\Events\ShippingStatusUpdated($order));
+    return view('broadcast.test', ['orderId' => $order->id]);
+});
+
+Route::get('/public-event', function () {
+    broadcast(new \App\Events\PublicEvent);
+    return 'public';
+});
