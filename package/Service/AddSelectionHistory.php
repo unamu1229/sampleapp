@@ -4,7 +4,7 @@
 namespace Package\Service;
 
 use Package\Repository\SelectionHistoryRepository;
-use Package\Value\Selection\SelectionHistoryEntity;
+use Package\Value\Selection\SelectionHistory;
 use Package\Value\Selection\SelectionId;
 
 class AddSelectionHistory
@@ -20,8 +20,8 @@ class AddSelectionHistory
     {
         $selectionHistories = $this->selectionHistoryRepository->allBySelectionId($selectionId);
 
-        /** @var SelectionHistoryEntity|null $lastHistory */
-        $lastHistory = $selectionHistories->sortByDesc(function (SelectionHistoryEntity $history) {
+        /** @var SelectionHistory|null $lastHistory */
+        $lastHistory = $selectionHistories->sortByDesc(function (SelectionHistory $history) {
             return $history->order();
         })->first();
 

@@ -36,6 +36,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Package\Domain\User\ChangeGender' => [
             'App\Listeners\ChangeEntryBilling'
+        ],
+        'App\Events\CorpUpdated' => [
+            'App\Listeners\InvoiceContact'
         ]
     ];
 
