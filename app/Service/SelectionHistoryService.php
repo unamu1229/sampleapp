@@ -4,7 +4,7 @@
 namespace App\Service;
 
 use Package\Repository\SelectionHistoryRepository;
-use Package\Repository\SelectionRepository;
+use Package\Repository\CommandSelectionRepository;
 use Package\Service\AddSelectionHistory;
 use Package\Value\Selection\SelectionId;
 
@@ -17,7 +17,7 @@ class SelectionHistoryService
     private $addSelectionHistory;
 
     public function __construct(
-        SelectionRepository $selectionRepository,
+        CommandSelectionRepository $selectionRepository,
         SelectionHistoryRepository $selectionHistoryRepository,
         AddSelectionHistory $selectionHistory
     ) {
@@ -29,7 +29,7 @@ class SelectionHistoryService
     public function agreeScheduleByCustomer(SelectionId $selectionId)
     {
         $selectionEntity = $this->selectionRepository->findById($selectionId);
-        $selectionHistoryEntity = $selectionEntity->agreeScheduleByClient($this->addSelectionHistory);
-        $this->selectionHistoryRepository->save($selectionHistoryEntity);
+        $selectionEntity->agreeScheduleByClient($this->addSelectionHistory);
+        $this->selectionRepository->save($selectionEntity);
     }
 }

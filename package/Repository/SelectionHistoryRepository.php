@@ -3,15 +3,14 @@
 
 namespace Package\Repository;
 
-use App\SelectionHistory;
 use Package\Value\Selection\ActionType;
-use Package\Value\Selection\SelectionHistoryEntity;
+use Package\Value\Selection\SelectionHistory;
 use Package\Value\Selection\SelectionId;
 use Package\Value\Selection\Status;
 
 class SelectionHistoryRepository
 {
-    public function save(SelectionHistoryEntity $entity)
+    public function save(SelectionHistory $entity)
     {
         $selectionHistory = new SelectionHistory();
         $selectionHistory->selection_id = $entity->selectionId();
@@ -23,7 +22,7 @@ class SelectionHistoryRepository
 
     /**
      * @param SelectionId $selectionId
-     * @return \Illuminate\Support\Collection<SelectionHistoryEntity>
+     * @return \Illuminate\Support\Collection<SelectionHistory>
      */
     public function allBySelectionId(SelectionId $selectionId)
     {
@@ -32,7 +31,7 @@ class SelectionHistoryRepository
         $selectionHistoriesEntity = collect();
         foreach ($selectionHistories as $selectionHistory) {
             $selectionHistoriesEntity->push(
-                    new SelectionHistoryEntity(
+                new SelectionHistory(
                         new SelectionId($selectionHistory->selection_id),
                         new ActionType($selectionHistory->action_type),
                         new Status($selectionHistory->status),

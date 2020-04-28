@@ -3,12 +3,11 @@
 
 namespace Package\Entity;
 
-use App\SelectionHistory;
 use Package\Service\AddSelectionHistory;
 use Package\Value\Selection\ActionType;
 use Package\Value\Selection\SelectionId;
 use Package\Value\Selection\Status;
-use Package\Value\Selection\SelectionHistoryEntity;
+use Package\Value\Selection\SelectionHistory;
 
 class SelectionEntity
 {
@@ -43,23 +42,23 @@ class SelectionEntity
         $this->histories[] = $history;
     }
 
-    public function agreeScheduleByCustomer(AddSelectionHistory $addSelectionHistory): SelectionHistoryEntity
+    public function agreeScheduleByCustomer(AddSelectionHistory $addSelectionHistory)
     {
-        return new SelectionHistoryEntity(
+        $this->pushHistory(new SelectionHistory(
             $this->getId(),
             new ActionType(ActionType::CUSTOMER),
             new Status(Status::SELECTION),
             $addSelectionHistory->order($this->getId())
-        );
+        ));
     }
 
-    public function agreeScheduleByClient(AddSelectionHistory $addSelectionHistory): SelectionHistoryEntity
+    public function agreeScheduleByClient(AddSelectionHistory $addSelectionHistory)
     {
-        return new SelectionHistoryEntity(
+        $this->pushHistory(new SelectionHistory(
             $this->getId(),
             new ActionType(ActionType::CLIENT),
             new Status(Status::SELECTION),
             $addSelectionHistory->order($this->getId())
-        );
+        ));
     }
 }

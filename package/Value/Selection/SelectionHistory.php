@@ -3,27 +3,19 @@
 
 namespace Package\Value\Selection;
 
-class SelectionHistoryEntity
+class SelectionHistory
 {
-    private $selectionId;
-
     private $actionType;
 
     private $status;
 
     private $order;
 
-    public function __construct(SelectionId $selectionId, ActionType $actionType, Status $status, int $order)
+    public function __construct(ActionType $actionType, Status $status, int $order)
     {
-        $this->selectionId = $selectionId;
         $this->actionType = $actionType;
         $this->status = $status;
         $this->order = $order;
-    }
-
-    public function selectionId()
-    {
-        return $this->selectionId->value();
     }
 
     public function actionType()

@@ -39,6 +39,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\CorpUpdated' => [
             'App\Listeners\InvoiceContact'
+        ],
+        'App\Events\PushCommandSelection' => [
+            'App\Listeners\PushQuerySelection'
+        ],
+        'App\Events\PutCommandSelection' => [
+            'App\Listeners\PutQuerySelection'
         ]
     ];
 
