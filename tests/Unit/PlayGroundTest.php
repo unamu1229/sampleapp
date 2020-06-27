@@ -3,41 +3,55 @@
 namespace Tests\Unit;
 
 use App\Events\PreUserChange;
+use App\Job;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Log;
+use Mockery\MockInterface;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PlayGroundTest extends TestCase
 {
-    use DatabaseTransactions;
+    //use DatabaseTransactions;
 
     /**
      * @throws \Throwable
      */
     public function testExample()
     {
-        echo "--------------\n";
-        print_r(strip_tags(view('test')->render()));
-        Carbon::createFromFormat('Y-m-d', '2020-1-1')->toDateString();
-        $test = 7;
-        collect()->first(function ($val) use ($test) {
-            return $val->id == $test;
+        $this->mock(User::class, function (MockInterface $mock) {
+            $mock->shouldReceive('licenses')->andReturn('aws', 'db', 'php');
         });
-        echo "--------------\n";
+
+        $user = $this->app->make(User::class);
+
+        $licenses = $user->licenses();
+        print_r($licenses);
+        print_r($licenses);
+        print_r($licenses);
 
 
-//        $this->assertTrue(true);
+
+//        ini_set('display_errors', 0);
+//        ini_set('error_reporting', E_ALL);
+//        ini_set('memory_limit', '1M');
 //
-//        /** @var User $user */
-//        $user = User::find(1);
-//        $user->name = 'test';
-//        $user->email = 'test@email';
-//        $preUser = clone $user;
-//        $user->save();
-//        event(new PreUserChange($preUser));
+//
+//        print_r(phpinfo());
+//
+//        $counter = 1;
+//        while (true) {
+//            $counter++;
+//            if ($counter > 2) {
+//                break;
+//            }
+//		print(1);
+//           // $job = new Job();
+//        }
+//
+//        print_r($counter);
     }
 }

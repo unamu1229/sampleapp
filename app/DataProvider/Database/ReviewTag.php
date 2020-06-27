@@ -4,6 +4,20 @@ namespace App\DataProvider\Database;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\DataProvider\Database\ReviewTag
+ *
+ * @property int $review_id
+ * @property int $tag_id
+ * @property string|null $created_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag whereReviewId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DataProvider\Database\ReviewTag whereTagId($value)
+ * @mixin \Eloquent
+ */
 class ReviewTag extends Model
 {
     /** @var string */
