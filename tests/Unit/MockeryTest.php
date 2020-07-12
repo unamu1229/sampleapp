@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Job;
 use App\License;
 use App\Service\UserService;
 use App\User;
@@ -83,16 +84,24 @@ class MockeryTest extends TestCase
             $mock->name = 'yoneda';
 
             $mock->shouldReceive('query->where->first')->andReturn($mock);
+            
+            $mock->shouldReceive('licenses->job->where->with->first')->andReturn(factory(License::class)->make(['name' => 'php']));
 
             //         このやりかただと licenses->where-> の次がfirstかwhereの場合があるので失敗する
-            $mock->shouldReceive('licenses->where->first')->andReturn(factory(License::class)->make(['name' => 'aws']));
-            $mock->shouldReceive('licenses->where->where->first')->andReturn(factory(License::class)->make(['name' => 'php']));
+            $mock->shouldReceive('licenses->job->where->first')->andReturn(factory(License::class)->make(['name' => 'aws']));
+            $mock->mainLicense = factory(License::class)->make();
+
+
 
             /*
                         $mock->shouldReceive('licenses->where')->andReturn($mock);
                         $mock->shouldReceive('first')->andReturn(factory(License::class)->make(['name' => 'aws']));
                         $mock->shouldReceive('where->first')->andReturn(factory(License::class)->make(['name' => 'php']));
                         */
+        });
+
+        $this->mock(Job::class, function (MockInterface $mock) {
+            $mock->shouldReceive('query->where->first');
         });
 
         $licenses = UserService::userLicenseCombine(100, 'yoneda');
