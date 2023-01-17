@@ -14,6 +14,8 @@ class ProfileController extends Controller
         $test2 = new \stdClass();
         //$test2->$test = 'ss';
 
+        app()->make()
+
         var_dump($test2);
 
         $user = User::find(1);
@@ -29,7 +31,12 @@ class ProfileController extends Controller
         return view('profile', ['user' => $user]);
     }
 
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function edit()
     {
+        return collect(['lll']);
     }
 }
